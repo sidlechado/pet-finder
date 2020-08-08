@@ -33,7 +33,7 @@ class Pet {
   @Column()
   owner_id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, (user: User) => user.pets)
   @JoinColumn({ name: 'owner_id' })
   owner: User;
 

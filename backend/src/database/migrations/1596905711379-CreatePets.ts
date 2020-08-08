@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class CreatePets1596905711379 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
@@ -34,6 +39,10 @@ export class CreatePets1596905711379 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'owner_id',
+            type: 'uuid',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
@@ -44,6 +53,17 @@ export class CreatePets1596905711379 implements MigrationInterface {
             default: 'now()',
           },
         ],
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'pets',
+      new TableForeignKey({
+        columnNames: ['owner_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'users',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
   }

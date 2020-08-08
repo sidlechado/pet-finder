@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+
+import Pet from './Pet';
 
 @Entity('users')
 class User {
@@ -22,6 +25,9 @@ class User {
 
   @Column()
   address: string;
+
+  @OneToMany(() => Pet, pet => pet.owner)
+  pets: Array<Pet>;
 
   @CreateDateColumn()
   created_at: Date;
