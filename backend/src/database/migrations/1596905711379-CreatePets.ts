@@ -26,11 +26,11 @@ export class CreatePets1596905711379 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'age',
+            name: 'weight',
             type: 'decimal',
           },
           {
-            name: 'password',
+            name: 'city',
             type: 'varchar',
           },
           {
