@@ -4,6 +4,9 @@ import AuthenticateUserService from '../services/AuthenticateUserService';
 
 const sessionsRouter = Router();
 
+/**
+ * log in the user and sets the his id on the forward requests
+ */
 sessionsRouter.post('/', async (request, response) => {
   const { email, password } = request.body;
 
