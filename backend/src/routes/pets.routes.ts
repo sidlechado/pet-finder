@@ -45,6 +45,24 @@ petsRouter.get('/', async (request, response) => {
 });
 
 /**
+ * this route returns all pets and their respective owners
+ */
+petsRouter.get('/:city', async (request, response) => {
+  const loggedInCity = request.params.city;
+  const petRepository = getRepository(Pet);
+
+  const pets = await petRepository.find({ relations: ['owner'], where: {
+    city: loggedInCity
+  } });
+
+  pets.forEach(pet => {
+    delete pet.owner.password;
+  });
+
+  return response.json(pets);
+});
+
+/**
  * this route updates a single pet
  */
 petsRouter.put(

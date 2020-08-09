@@ -3,7 +3,12 @@ import api from '../services/api';
 
 interface AuthState {
   token: string;
-  user: object;
+  user: {
+    email: string,
+    name: string,
+    id: string,
+    city: string,
+  };
 }
 
 interface SignInCredentials {
@@ -12,7 +17,12 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: object;
+  user: {
+    id: string,
+    email: string,
+    name: string,
+    city: string,
+  };
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
 }
@@ -21,8 +31,8 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
-    const token = localStorage.getItem('@GoBarber:token');
-    const user = localStorage.getItem('@GoBarber:user');
+    const token = localStorage.getItem('@PetFinder:token');
+    const user = localStorage.getItem('@PetFinder:user');
 
     if (token && user) {
       return { token, user: JSON.parse(user) };
@@ -39,15 +49,17 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem('@GoBarber:token', token);
-    localStorage.setItem('@GoBarber:user', JSON.stringify(user));
+    localStorage.setItem('@PetFinder:token', token);
+    localStorage.setItem('@PetFinder:user', JSON.stringify(user));
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
 
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GoBarber:token');
-    localStorage.removeItem('@GoBarber:user');
+    localStorage.removeItem('@PetFinder:token');
+    localStorage.removeItem('@PetFinder:user');
 
     setData({} as AuthState);
   }, []);
