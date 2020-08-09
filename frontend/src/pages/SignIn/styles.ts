@@ -84,3 +84,13 @@ export const Background = styled.div`
   background: url(${signInBackgroundImg}) no-repeat center;
   background-size: cover;
 `;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  button {
+    margin-bottom: -20px;
+  }
+  
+`

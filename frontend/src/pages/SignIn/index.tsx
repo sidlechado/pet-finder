@@ -12,7 +12,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import { Container, Content, AnimationContainer, Background } from './styles';
+import { Container, Content, AnimationContainer, Background, ButtonContainer } from './styles';
 
 interface SignInFormData {
   email: string;
@@ -72,6 +72,7 @@ const SignIn: React.FC = () => {
     <Container>
       <Content>
         <AnimationContainer>
+         
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Faça seu logon</h1>
 
@@ -83,7 +84,12 @@ const SignIn: React.FC = () => {
               placeholder="Senha"
             />
 
-            <Button type="submit">Entrar</Button>
+            <ButtonContainer>
+              <Button type="submit">Entrar</Button>
+              <Link to='/pets'>
+                <Button>Pets para adoção</Button>
+              </Link>
+            </ButtonContainer>
 
             <a href="forgot">Esqueci minha senha</a>
           </Form>

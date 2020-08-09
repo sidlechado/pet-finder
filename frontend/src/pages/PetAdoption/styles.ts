@@ -1,6 +1,29 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  height: 100vh;
+
+  > header {
+    height: 144px;
+    background: #28262e;
+
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 10px;
+
+    > div {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+
+      svg {
+        color: #999591;
+        width: 24px;
+        height: 24px;
+      }
+    }
+`;
 
 
 export const Content = styled.main`

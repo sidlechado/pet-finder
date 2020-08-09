@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import {FiArrowLeft} from 'react-icons/fi';
 
 import {
   Container,
@@ -40,6 +42,13 @@ const PetListing: React.FC = () => {
 
   return (
     <Container>
+      <header>
+        <div>
+          <Link to="/dashboard">
+            <FiArrowLeft />
+          </Link>
+        </div>
+      </header>
       <Content>
           <h1>Pets para adoção em {user.city}</h1>
 
