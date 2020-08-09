@@ -1,10 +1,11 @@
-import { Router, response } from 'express';
+import { Router, response, request } from 'express';
 import { getRepository } from 'typeorm';
 
 import CreateService from '../services/Pet/CreateService';
 import UpdateService from '../services/Pet/UpdateService';
 import Pet from '../models/Pet';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+import DeleteService from '../services/Pet/DeleteService';
 
 const petsRouter = Router();
 
@@ -66,6 +67,28 @@ petsRouter.put(
     });
 
     return response.json(pet);
+  },
+);
+
+/**
+ * this route deletes a pet given its id
+ */
+
+petsRouter.delete(
+  '/delete/:pet_id',
+  ensureAuthenticated,
+  async (request, response) => {
+    const { pet_id } = request.params;
+
+    const deletePet = new DeleteService();
+
+    const pet = await deletePet.execute({
+      petId: pet_id,
+      owner: request.user.id,
+    });
+
+    if (pet.affected) return response.json('Pet successfully deleted.');
+    else return response.json('Couldnt delete pet.');
   },
 );
 

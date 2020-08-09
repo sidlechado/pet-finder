@@ -33,7 +33,7 @@ class UpdateService {
     });
 
     if (!pet) {
-      throw new AppError('Pet doesnt exists.');
+      throw new AppError('Pet doesnt exist.');
     }
 
     if (pet.owner_id != owner) {
