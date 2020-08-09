@@ -1,8 +1,8 @@
 import { getRepository } from 'typeorm';
 
-import AppError from '../errors/AppError';
+import AppError from '../../errors/AppError';
 
-import Pet from '../models/Pet';
+import Pet from '../../models/Pet';
 
 interface Request {
   name: string;
@@ -14,7 +14,7 @@ interface Request {
   petId: string;
 }
 
-class CreatePetService {
+class UpdateService {
   public async execute({
     name,
     race,
@@ -52,4 +52,4 @@ class CreatePetService {
   }
 }
 
-export default CreatePetService;
+export default UpdateService;

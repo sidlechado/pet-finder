@@ -1,8 +1,8 @@
 import { Router, response } from 'express';
 import { getRepository } from 'typeorm';
 
-import CreatePetService from '../services/CreatePetService';
-import UpdatePetService from '../services/UpdatePetService';
+import CreateService from '../services/Pet/CreateService';
+import UpdateService from '../services/Pet/UpdateService';
 import Pet from '../models/Pet';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
@@ -14,7 +14,7 @@ const petsRouter = Router();
 petsRouter.post('/create', async (request, response) => {
   const { name, race, age, weight, city, owner } = request.body;
 
-  const createPet = new CreatePetService();
+  const createPet = new CreateService();
 
   const pet = await createPet.execute({
     name,
@@ -53,7 +53,7 @@ petsRouter.put(
     const { pet_id } = request.params;
     const { name, race, age, weight, city } = request.body;
 
-    const updatePet = new UpdatePetService();
+    const updatePet = new UpdateService();
 
     const pet = await updatePet.execute({
       name,

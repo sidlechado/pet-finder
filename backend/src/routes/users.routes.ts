@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import CreateUserService from '../services/CreateUserService';
+import CreateService from '../services/User/CreateService';
 import { getRepository } from 'typeorm';
 import User from '../models/User';
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
@@ -13,7 +13,7 @@ const usersRouter = Router();
 usersRouter.post('/', async (request, response) => {
   const { name, email, password, address } = request.body;
 
-  const createUser = new CreateUserService();
+  const createUser = new CreateService();
 
   const user = await createUser.execute({
     name,
