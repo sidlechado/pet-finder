@@ -9,7 +9,10 @@ interface Request {
   name: string;
   email: string;
   password: string;
-  address: string;
+  street: string;
+  streetNumber: string;
+  city: string;
+  state: string;
 }
 
 class CreateUserService {
@@ -17,7 +20,10 @@ class CreateUserService {
     name,
     email,
     password,
-    address,
+    street,
+    streetNumber,
+    city,
+    state,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
@@ -35,7 +41,10 @@ class CreateUserService {
       name,
       email,
       password: hashedPassword,
-      address,
+      street,
+      streetNumber,
+      city,
+      state,
     });
 
     await usersRepository.save(user);

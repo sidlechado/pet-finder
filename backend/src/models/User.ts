@@ -24,7 +24,16 @@ class User {
   password: string;
 
   @Column()
-  address: string;
+  street: string;
+
+  @Column()
+  streetNumber: string;
+
+  @Column()
+  city: string;
+
+  @Column()
+  state: string;
 
   @OneToMany(() => Pet, pet => pet.owner)
   pets: Array<Pet>;

@@ -11,7 +11,15 @@ const usersRouter = Router();
  * creates and returns a new user
  */
 usersRouter.post('/', async (request, response) => {
-  const { name, email, password, address } = request.body;
+  const {
+    name,
+    email,
+    password,
+    street,
+    streetNumber,
+    city,
+    state,
+  } = request.body;
 
   const createUser = new CreateService();
 
@@ -19,7 +27,10 @@ usersRouter.post('/', async (request, response) => {
     name,
     email,
     password,
-    address,
+    street,
+    streetNumber,
+    city,
+    state,
   });
 
   delete user.password;

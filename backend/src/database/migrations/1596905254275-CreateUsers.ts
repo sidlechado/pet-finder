@@ -23,7 +23,19 @@ export class CreateUsers1596905254275 implements MigrationInterface {
             isUnique: true,
           },
           {
-            name: 'address',
+            name: 'street',
+            type: 'varchar',
+          },
+          {
+            name: 'streetNumber',
+            type: 'varchar',
+          },
+          {
+            name: 'city',
+            type: 'varchar',
+          },
+          {
+            name: 'state',
             type: 'varchar',
           },
           {
