@@ -12,8 +12,8 @@ const petsRouter = Router();
 /**
  * this route creates a new pet attached to an owner/user
  */
-petsRouter.post('/create', async (request, response) => {
-  const { name, race, age, weight, city, owner } = request.body;
+petsRouter.post('/create', ensureAuthenticated, async (request, response) => {
+  const { name, race, age, weight, city } = request.body;
 
   const createPet = new CreateService();
 
@@ -23,7 +23,7 @@ petsRouter.post('/create', async (request, response) => {
     age,
     weight,
     city,
-    owner,
+    owner: request.user.id,
   });
 
   return response.json(pet);

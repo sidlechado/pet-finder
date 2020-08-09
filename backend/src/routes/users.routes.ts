@@ -41,7 +41,7 @@ usersRouter.post('/', async (request, response) => {
 /**
  * return the list of pets of the current logged in user
  */
-usersRouter.get('/pets', ensureAuthenticated, async (request, response) => {
+usersRouter.get('/pets/me', ensureAuthenticated, async (request, response) => {
   const userRepository = getRepository(User);
 
   const user = await userRepository.findOne({
