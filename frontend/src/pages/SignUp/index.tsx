@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { FiArrowLeft, FiUser, FiMail, FiLock } from 'react-icons/fi';
+import { FiArrowLeft, FiUser, FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -38,6 +38,10 @@ const SignUp: React.FC = () => {
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
           password: Yup.string().min(6, 'No mínimo 6 dígitos'),
+          street: Yup.string().required('Endereco obrigatório.'),
+          streetNumber: Yup.string().required('Endereco obrigatório.'),
+          city: Yup.string().required('Cidade obrigatório.'),
+          state: Yup.string().required('Estado obrigatório.')
         });
 
         await schema.validate(data, {
@@ -89,6 +93,11 @@ const SignUp: React.FC = () => {
               type="password"
               placeholder="Senha"
             />
+            <Input name="street" icon={FiArrowRight} placeholder="Rua" />
+            <Input name="streetNumber" icon={FiArrowRight} placeholder="Número" />
+            <Input name="city" icon={FiArrowRight} placeholder="Cidade" />
+            <Input name="state" icon={FiArrowRight} placeholder="Estado" />
+
 
             <Button type="submit">Cadastrar</Button>
           </Form>
